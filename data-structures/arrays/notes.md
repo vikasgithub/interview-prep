@@ -69,3 +69,26 @@ list = [1,2,3]
 list.append(4) # 1, 2, 3, 4
 list.pop() # 1, 2, 3
 ```
+
+### Counter
+```python
+from collections import Counter
+c = Counter(['eggs', 'ham'])
+c['bacon'] # 0
+c['sausage'] = 0
+del c['sausage']
+
+# elements
+c = Counter(a=4, b=2, c=0, d=-2)
+sorted(c.elements())
+['a', 'a', 'a', 'a', 'b', 'b']
+
+# most_common([n])
+Counter('abracadabra').most_common(3) # [('a', 5), ('b', 2), ('r', 2)]
+
+# subtract
+c = Counter(a=4, b=2, c=0, d=-2)
+d = Counter(a=1, b=2, c=3, d=4)
+c.subtract(d)
+c # Counter({'a': 3, 'b': 0, 'c': -3, 'd': -6})
+```
