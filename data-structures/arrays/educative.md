@@ -136,4 +136,62 @@ def right_rotate(lst, k):
 ```
 </details>
 
+### Rearrange positive and negative values
+Given a list, can you rearrange its elements in such a way that the negative elements appear at one end and positive elements appear at the other
+```python
+[10,-1,20,4,5,-9,-6] # input
+[-1,-9,-6,10,20,4,5] # output
+```
 
+<details><summary>Solution</summary>
+
+```python
+def rearrange(lst):
+    i, j = 0, 0
+
+    while i < len(lst):
+        if lst[i] < 0:
+            while j < len(lst) and lst[j] < 0:
+                j += 1
+            if j < len(lst):
+                lst[i], lst[j] = lst[j], lst[i]
+        i += 1
+ 
+    # Replace this placeholder return statement with your code
+    return lst
+
+# another solution
+def rearrange(lst):
+    i, j = 0, 0
+
+    while i < j:
+        while lst[i] < 0:
+            i += 1
+        while lst[j] > 0:
+            j -= 1
+        if i >= j:
+            break
+        else:
+            lst[i], lst[j] = lst[j], lst[i] 
+            i += 1
+            j -= 1
+    # Replace this placeholder return statement with your code
+    return lst
+```
+</details>
+
+###  Maximum Sum Sublist
+Given an array, find the contiguous sublist with the largest sum.
+
+<details><summary>Solution</summary>
+
+```python
+def find_max_sum_sublist(lst):
+    max_sum, curr_max = lst[0], lst[0]
+
+    for i in range(1, len(lst)):
+        curr_max = max(curr_max + lst[i], lst[i])
+        max_sum = max(curr_max, max_sum)
+    return max_sum
+```
+</details>
