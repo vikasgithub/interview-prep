@@ -195,3 +195,14 @@ def find_max_sum_sublist(lst):
     return max_sum
 ```
 </details>
+
+### Product of array except self
+
+<details><summary>Solution</summary>
+
+- Create left and right array
+- left array contains product for items to the left
+- right array contains product for items to the right
+- multiply left and right array to get the final product
+
+</details>
