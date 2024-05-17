@@ -123,3 +123,59 @@ def minValue(self, root):
     return min_val
 ```
 </details>
+
+### Check if an array represents Inorder of Binary Search tree or not
+
+<details><summary>Solution</summary>
+
+The idea is to use the fact that the inorder traversal of Binary Search Tree is sorted. So, just check if given array is sorted or not. 
+
+</details>
+
+### How to determine if a binary tree is height-balanced?
+
+<details><summary>Solution</summary>
+
+```python
+def height(self, root):
+    if root is None:
+        return 0
+    return 1 + max(self.height(root.left), self.height(root.right))
+            
+def isBalanced(self,root):
+    if root is None:
+        return True
+    
+    lh = self.height(root.left)
+    rh = self.height(root.right)
+    
+    return abs(lh - rh) <= 1 and self.isBalanced(root.left) and self.isBalanced(root.right)
+```
+
+</details>
+
+### Convert sorted array to BST
+
+<details><summary>Solution</summary>
+
+```python
+def sortedArrayToBST(arr):
+    if not arr:
+        return None
+ 
+    # find middle index
+    mid = (len(arr)) // 2
+ 
+    # make the middle element the root
+    root = Node(arr[mid])
+ 
+    # left subtree of root has all
+    # values <arr[mid]
+    root.left = sortedArrayToBST(arr[:mid])
+ 
+    # right subtree of root has all
+    # values >arr[mid]
+    root.right = sortedArrayToBST(arr[mid+1:])
+    return root
+```
+</details>
