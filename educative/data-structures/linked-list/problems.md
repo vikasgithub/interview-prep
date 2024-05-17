@@ -1,5 +1,8 @@
 ## Linked List
 ### Find the middle of the linked list
+
+<details><summary>Solution</summary>
+
 ```python
 def find_mid(lst):
     # Replace this placeholder return statement with your code
@@ -12,8 +15,14 @@ def find_mid(lst):
     
     middle = sp
 ```
+</details>
 
 ### Return the nth node from the end
+
+<details><summary>Solution</summary>
+
 - Use two pointers and increment first pointer n times
 - start second pointer until end is reached
+
+</details>
 
