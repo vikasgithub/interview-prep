@@ -26,3 +26,63 @@ def find_mid(lst):
 
 </details>
 
+### Reverse a linked list
+
+<details><summary>Solution</summary>
+
+```python
+class Solution:
+    #Function to reverse a linked list.
+    def reverseList(self, head):
+        if head is None:
+            return head
+            
+        # Code here
+        prev = None
+        curr = head
+        
+        while curr is not None:
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+            
+        return prev
+```
+</details>
+
+### Rotate a linked list
+
+<details><summary>Solution</summary>
+
+
+```python
+class Solution:
+    
+    #Function to rotate a linked list.
+    def rotate(self, head, k):
+        # code here
+        curr = head
+        prev = None
+        while k > 0:
+            prev = curr
+            curr = curr.next
+            k -= 1
+            
+        if curr is None:
+            return head
+            
+        prev.next = None
+        new_head = curr
+        
+        while curr.next is not None:
+            curr = curr.next
+            
+        curr.next = head
+        
+        return new_head
+        
+```
+
+</detail>
+
