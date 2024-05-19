@@ -158,4 +158,81 @@ class Solution:
 
 </details>
 
-####
+### Detect cycle in an undirected graph
+
+<details><summary>Solution</summary>
+
+```python
+
+class Solution:
+    #Function to detect cycle in an undirected graph.
+	def isCycle(self, V: int, adj: List[List[int]]) -> bool:
+		visited = [False] * V
+		
+		for i in range(len(adj)):
+		    if not visited[i]:
+		        if self.dfs(i, -1, adj, visited):
+    		        return True
+		            
+		return False
+		
+    def dfs(self, node, parent, adj, visited):
+        visited[node] = True
+        
+        for nbr in adj[node]:
+            if not visited[nbr]:
+                if self.dfs(nbr, node, adj, visited):
+                    return True
+            # If an adjacent vertex is
+            # visited and not parent
+            # of current vertex,
+            # then there is a cycle
+            elif nbr != parent:
+                return True
+                
+        return False
+
+```
+
+</details>
+
+### Detect cycle in a directed graph
+
+<details><summary>Solution</summary>
+
+```python
+
+def isCyclicUtil(self, v, visited, recStack):
+
+    # Mark current node as visited and
+    # adds to recursion stack
+    visited[v] = True
+    recStack[v] = True
+
+    # Recur for all neighbours
+    # if any neighbour is visited and in
+    # recStack then graph is cyclic
+    for neighbour in self.graph[v]:
+        if visited[neighbour] == False:
+            if self.isCyclicUtil(neighbour, visited, recStack) == True:
+                return True
+        elif recStack[neighbour] == True:
+            return True
+
+    # The node needs to be popped from
+    # recursion stack before function ends
+    recStack[v] = False
+    return False
+
+# Returns true if graph is cyclic else false
+def isCyclic(self):
+    visited = [False] * (self.V + 1)
+    recStack = [False] * (self.V + 1)
+    for node in range(self.V):
+        if visited[node] == False:
+            if self.isCyclicUtil(node, visited, recStack) == True:
+                return True
+    return False
+
+```
+</details>
