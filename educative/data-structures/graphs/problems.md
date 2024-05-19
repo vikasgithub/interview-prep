@@ -89,4 +89,73 @@ def isReachable(self, s, d):
 
 </details>
 
+### Find the transitive closure of a Graph
 
+<details><summary>Solution</summary>
+
+```python
+def transitiveClosure(self, N, graph):
+    # code here
+    tran_clo = [[0] * N for i in range(N)]
+    adj_list = [[] * N for i in range(N)]
+    for i in range(N):
+        for j in range(N):
+            if graph[i][j] == 1:
+                adj_list[i].append(j)
+
+    for i in range(N):
+        visited = [False] * N
+        visited_list = []
+        self.dfs_util(adj_list, i, visited, tran_clo, visited_list)
+        for j in visited_list:
+            tran_clo[i][j] = 1
+
+    return tran_clo
+
+def dfs_util(self, adj_list, source, visited, tran_clo, visited_list):
+    visited[source] = True
+    visited_list.append(source)
+    for i in adj_list[source]:
+        if not visited[i]:
+            self.dfs_util(adj_list, i, visited, tran_clo, visited_list)
+```
+
+</details>
+
+### Find the number of islands
+
+<details><summary>Solution</summary>
+
+```python
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        row = [0, 1, 0,  -1]
+        col = [1, 0,  -1, 0]
+
+        islands = 0
+
+        visited = [[False] * len(grid[0]) for i in range(len(grid))]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if not visited[i][j] and grid[i][j] == "1":
+                    self.dfs(grid, i, j, visited, row, col)
+                    islands += 1
+
+        return islands
+    
+    def dfs(self, grid, i, j, visited, row, col):
+        visited[i][j] = True
+
+        for k in range(len(row)):
+            x = i + row[k]
+            y = j + col[k]
+            if self.is_safe(x, y, visited, grid):
+                self.dfs(grid, x, y, visited, row, col)
+
+    def is_safe(self, x, y, visited, grid):
+        return x >= 0 and x < len(grid) and y >= 0 and y < len(grid[0]) and not visited[x][y] and grid[x][y] == "1"
+```
+
+</details>
+
+####

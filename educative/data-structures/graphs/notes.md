@@ -283,3 +283,45 @@ def dfs(u, aList, pre, post, vis):
 ```
 
 </details>
+
+### Implement Union-Find
+
+<details><summary>Solution</summary>
+
+```python
+
+class Solution:
+    
+    
+    def find(self, a, par, rank1):
+        if a != par[a]:
+            par[a] = self.find(par[a], par, rank1)
+            
+        return par[a]
+        
+    #Function to merge two nodes a and b.
+    def union_(self,a,b,par,rank1):
+        # code here
+        par_a = self.find(a, par, rank1)
+        par_b = self.find(b, par, rank1)
+        
+        if par_a == par_b:
+            return
+        
+        if rank1[par_a] < rank1[par_b]:
+            par[par_a] = par_b
+        elif rank1[par_a] > rank1[par_b]:
+            par[par_b] = par_a
+        else:
+            par[par_b] = par_a
+            rank1[par_a] += 1
+        
+        
+    #Function to check whether 2 nodes are connected or not.
+    def isConnected(self,x,y,par,rank1):
+        # code here
+        return self.find(x, par, rank1) == self.find(y, par, rank1)
+```
+
+</details>
+
