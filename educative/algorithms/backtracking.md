@@ -164,3 +164,32 @@ class Solution:
 ```
 
 </details>
+
+### Generate Paranthesis
+
+<details><summary>Solution</summary>
+
+```python
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        result = []
+        self.generateParenthesisHelper(n, 0, 0, result, [])
+        return result
+        
+    def generateParenthesisHelper(self, n, left, right, results, asf):
+        if len(asf) == 2 * n:
+            results.append("".join(asf))
+            return
+
+        if left < n:
+            asf.append("(")
+            self.generateParenthesisHelper(n, left + 1, right, results, asf)
+            asf.pop()
+
+        if left > right:
+            asf.append(")")
+            self.generateParenthesisHelper(n, left, right + 1, results, asf)
+            asf.pop()
+```
+
+</details>
