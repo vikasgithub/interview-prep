@@ -54,6 +54,8 @@ def coin_change(coins, total):
 
 ### Find tribonacci number
 
+<details><summary>Solution</summary>
+
 ```python
 
 def find_tribonacci(n):
@@ -72,3 +74,79 @@ def find_tribonacci(n):
 print(find_tribonacci(4))
 
 ```
+
+</details>
+
+### Climbing Stairs
+
+<details><summary>Solution 1</summary>
+
+```python
+    def climbStairs(self, n: int) -> int:
+        dp = [0] * (n+1)
+        dp[0] = 1
+        for i in range(1, (n+1)):
+            if i == 1:
+                dp[1] = 1
+            else:
+                dp[i] = dp[i-1] + dp[i-2]
+
+        return dp[n]
+```
+
+</details>
+
+<details><summary>Solution 2</summary>
+
+```python
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        dp = [0] * (n+1)
+        self.climbStairsHelper(n, dp)
+
+        return dp[n]
+
+    def climbStairsHelper(self, n: int, dp):
+        if n < 0:
+            return 0
+        if n == 0:
+            return 1
+        if dp[n] != 0:
+            return dp[n]
+
+        dp1 = self.climbStairsHelper(n - 2, dp)
+        dp2 = self.climbStairsHelper(n - 1, dp)
+
+        dp[n] = dp1 + dp2
+
+        return dp[n]
+```
+
+### Minimum Path Sum (Leetcode 64)
+
+<details><summary>Solution</summary>
+
+```python
+
+def min_cost_path(mat):
+    rows = len(mat)
+    cols = len(mat[0])
+    cost = [[0] * cols for i in range(rows)]
+    cost[0][0] = mat[0][0]
+    for r in range(0, rows):
+        for c in range(0, cols):
+            if r == 0 and c == 0:
+                cost[0][0] = mat[0][0]
+            elif r == 0:
+                cost[r][c] = cost[r][c - 1] + mat[r][c]
+            elif c == 0:
+                cost[r][c] = cost[r-1][c] + mat[r][c]
+            else:
+                cost[r][c] = min(cost[r-1][c], cost[r][c-1]) + mat[r][c]
+
+    print(cost)
+    return cost[rows - 1][cols - 1]
+
+```
+
+</details>
