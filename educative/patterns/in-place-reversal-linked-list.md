@@ -2,6 +2,8 @@
 
 ## Reverse a linked list
 
+<details><summary>Solution</summary>
+
 ```python
 # Definition for singly-linked list.
 # class ListNode:
@@ -20,8 +22,11 @@ class Solution:
 
         return prev
 ```
+</details>
 
 ## Reverse nodes in k-groups
+
+<details><summary>Solution</summary>
 
 ```python
 class Solution:
@@ -66,7 +71,11 @@ class Solution:
         first.next = after
 ```
 
+</details>
+
 ### Reverse Linked list between two given nodes
+
+<details><summary>Solution</summary>
 
 ```python
 class Solution:
@@ -106,7 +115,11 @@ class Solution:
         first.next = after        
 ```
 
+</details>
+
 ### Reorder List
+
+<details><summary>Solution</summary>
 
 ```python
 class Solution:
@@ -147,7 +160,11 @@ class Solution:
         return prev
 ```
 
+</details>
+
 ### Swap Nodes
+
+<details><summary>Solution</summary>
 
 ```python
 class Solution:
@@ -174,7 +191,11 @@ class Solution:
         return dummy.next
 ```
 
+</details>
+
 ### Reverse nodes in even length groups
+
+<details><summary>Solution</summary>
 
 ```python
 class Solution:
@@ -220,3 +241,33 @@ class Solution:
         before.next = prev
         first.next = after
 ```
+
+</details>
+
+### Reverse in pairs
+
+<details><summary>Solution</summary>
+
+```python
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
+
+        dummy = ListNode(0, head)
+        before = dummy
+        first = head
+
+        while first is not None and first.next is not None:
+            second = first.next
+            nxt2 = second.next
+            second.next = first
+            first.next = nxt2
+            before.next = second
+            before = first
+            first = nxt2
+
+        return dummy.next
+```
+
+</details>
