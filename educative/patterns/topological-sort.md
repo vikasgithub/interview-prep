@@ -101,7 +101,7 @@ def topologicalSort(adj, V):
 
 ### Course Schedule
 
-- Using BFS
+- Using DFS
 
 ```py
 class Solution:
@@ -156,33 +156,27 @@ class Solution:
             dep = cl[1]
             adj_list[dep].append(c)
 
-        in_degree = [0] * numCourses
+        rec_stack = [False] * numCourses
+        visited = [False] * numCourses
 
-        for i in range(numCourses):
-            for v in adj_list[i]:
-                in_degree[v] = in_degree[v] + 1
-
-        d = deque()
-
-        for i in range(numCourses):
-            if in_degree[i] == 0:
-                d.appendleft(i)
-
-        count = 0
-        top_sort = []
-        while d:
-            v = d.pop()
-            top_sort.append(v)
-
-            for n in adj_list[v]:
-                in_degree[n] = in_degree[n] - 1
-                if in_degree[n] == 0:
-                    d.appendleft(n)
-
-            count += 1
-
-        if count != numCourses:
-            return False
+        for v in range(numCourses):
+            if not visited[v]:
+                if self.has_cycle(v, adj_list, visited, rec_stack):
+                    return False
 
         return True
+
+    def has_cycle(self, source, adj_list, visited, rec_stack):
+        visited[source] = True
+        rec_stack[source] = True
+
+        for n in adj_list[source]:
+            if not visited[n]:
+                if self.has_cycle(n, adj_list, visited, rec_stack):
+                    return True
+            elif rec_stack[n]:
+                return True
+
+        rec_stack[source] = False
+        return False
 ```
